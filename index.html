@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SCRIPT CO – Digital Transformation & Software Solutions</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- SwiperJS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 10px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Enhanced responsive spacing for all sections */
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 20px;
+      }
+      section {
+        padding: 60px 0 !important;
+      }
+    }
+
+    .top-bar {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 10px 0;
+      font-size: 0.8rem;
+    }
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .top-bar-left {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .top-bar-left i {
+      color: #3b82f6;
+      margin-right: 6px;
+    }
+    .top-bar-motto {
+      font-weight: 600;
+      background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (max-width: 700px) {
+      .top-bar .container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .top-bar-left {
+        justify-content: center;
+      }
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo-container {
+      background-color: #0f172a;
+      padding: 6px 18px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+    .logo-img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 1.2rem;
+      }
+      .logo-img {
+        height: 30px;
+      }
+      .logo-container {
+        padding: 4px 12px;
+      }
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+    .whatsapp-nav {
+      background: #25D366;
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-nav:hover {
+      background: #128C7E;
+      transform: scale(1.02);
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #1e293b;
+    }
+    @media (max-width: 950px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(255,255,255,0.98);
+        padding: 24px;
+        gap: 20px;
+        border-radius: 28px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px #2563eb;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 10px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (max-width: 640px) {
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+    /* Responsive adjustments for tiny screens */
+    @media (max-width: 500px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+    .service-card, .team-card, .industry-card, .portfolio-card, .communication-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(203, 213, 225, 0.3);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover, .team-card:hover, .communication-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+    }
+    .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+    .team-card .card-img, .communication-card .card-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      object-position: top center;
+    }
+    @media (max-width: 768px) {
+      .team-card .card-img, .communication-card .card-img {
+        height: 320px;
+      }
+    }
+    @media (max-width: 480px) {
+      .team-card .card-img, .communication-card .card-img {
+        height: 280px;
+      }
+    }
+    .card-content {
+      padding: 24px;
+      flex: 1;
+    }
+    .contact-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .whatsapp-btn-small {
+      background: #25D366;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .whatsapp-btn-small:hover {
+      background: #128C7E;
+      transform: scale(1.02);
+    }
+    .call-btn-small {
+      background: #2563eb;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .call-btn-small:hover {
+      background: #1e40af;
+    }
+    /* Responsive text in contact buttons */
+    @media (max-width: 450px) {
+      .contact-links a {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+      .card-content {
+        padding: 18px;
+      }
+    }
+    .float-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      z-index: 99;
+      transition: all 0.3s;
+    }
+    .float-wa:hover {
+      transform: scale(1.1);
+      background: #128C7E;
+    }
+    @media (max-width: 550px) {
+      .float-wa {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+    .swiper {
+      padding: 30px 0 60px;
+    }
+    .review-card {
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      border-radius: 32px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      border: 1px solid #eef2ff;
+      margin: 15px;
+    }
+    @media (max-width: 640px) {
+      .review-card {
+        padding: 24px;
+        margin: 10px;
+      }
+    }
+    .client-img {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 16px;
+      border: 4px solid #3b82f6;
+    }
+    footer {
+      background: #0b1120;
+      color: #cbd5e1;
+      padding: 50px 0 30px;
+    }
+    .map-container {
+      border-radius: 32px;
+      overflow: hidden;
+      margin: 40px auto;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .contact-form input, .contact-form select, .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      margin-top: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      font-family: inherit;
+      transition: 0.2s;
+      background: #f9fafb;
+    }
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+    .filter-btn {
+      background: #f1f5f9;
+      border: none;
+      padding: 8px 26px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #2563eb;
+      color: white;
+    }
+    /* Responsive filter buttons */
+    @media (max-width: 550px) {
+      .filter-btn {
+        padding: 6px 16px;
+        font-size: 0.85rem;
+      }
+      .filter-buttons {
+        gap: 10px !important;
+      }
+    }
+    .hidden-port {
+      display: none;
+    }
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 50px;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .stat-item {
+      text-align: center;
+      min-width: 140px;
+    }
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 640px) {
+      .stats-container {
+        gap: 20px;
+        padding: 20px 12px;
+      }
+      .stat-item {
+        min-width: 100px;
+      }
+      .stat-number {
+        font-size: 2rem;
+      }
+      .stat-label {
+        font-size: 0.8rem;
+      }
+    }
+    /* AI Chat Bot responsive */
+    .ai-chat-container {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 360px;
+      max-width: calc(100vw - 40px);
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(59,130,246,0.2);
+      font-family: 'Inter', sans-serif;
+    }
+    .ai-chat-header {
+      background: #0f172a;
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .ai-chat-header i {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .ai-chat-body {
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      background: #f8fafc;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .message {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .user-message {
+      background: #2563eb;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .bot-message {
+      background: #e2e8f0;
+      color: #1e293b;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 12px;
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      gap: 8px;
+    }
+    .chat-input-area input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 40px;
+      font-family: inherit;
+      outline: none;
+    }
+    .chat-input-area button {
+      background: #0f172a;
+      border: none;
+      color: white;
+      border-radius: 40px;
+      padding: 0 18px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .typing {
+      font-style: italic;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+    .minimized {
+      height: 56px;
+    }
+    .minimized .ai-chat-body {
+      display: none;
+    }
+    @media (max-width: 550px) {
+      .ai-chat-container {
+        width: 300px;
+        right: 16px;
+        bottom: 80px;
+      }
+      .ai-chat-body {
+        height: 360px;
+      }
+    }
+    /* About section responsive grid */
+    @media (max-width: 768px) {
+      #about .container > div,
+      #management .container > div,
+      #contact .container > div {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+      }
+      .stats-container {
+        margin-top: 35px;
+      }
+      .hero-logo img {
+        height: 55px;
+      }
+      .cta-buttons {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .btn-primary, .btn-outline {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+    /* Gallery responsive */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .gallery-card img {
+        height: 220px;
+      }
+    }
+    /* footer responsive */
+    footer .container > div:first-child {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+    }
+    @media (max-width: 520px) {
+      footer .container > div:first-child {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/256794225505?text=Hello%20Script%20Co!%20I%20need%20a%20professional%20solution" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<!-- Live AI Chat Bot (DeepSeek API) -->
+<div class="ai-chat-container" id="aiChatContainer">
+  <div class="ai-chat-header" id="chatHeader">
+    <span><i class="fas fa-robot"></i> Script Co AI Assistant</span>
+    <i class="fas fa-chevron-down" id="toggleChatBtn"></i>
+  </div>
+  <div class="ai-chat-body" id="chatBody">
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot-message">👋 Hello! I'm Script Co's AI assistant powered by DeepSeek. Ask me anything about our IT solutions, networking, systems, or services!</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Ask me about IT, networking, software..." autocomplete="off">
+      <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- Top Bar -->
+<div class="top-bar" style="background:#0f172a;">
+  <div class="container">
+    <div class="top-bar-left">
+      <span><i class="fas fa-map-marker-alt"></i> Kampala - Uganda | Busunju - Mityana, Uganda</span>
+      <span><i class="fas fa-phone-alt"></i> 0794225505 / 0700421946</span>
+    </div>
+    <div class="top-bar-motto"><i class="fas fa-gem"></i> "Delivered by Service, Defined by Quality"</div>
+  </div>
+</div>
+
+<!-- Sticky Navigation -->
+<div class="navbar">
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="Script Stationary Logo.png" alt="Script Co Logo" class="logo-img">
+      <span class="logo-text">SCRIPT CO</span>
+    </div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li>
+      <li><a href="#management">Management Systems</a></li><li><a href="#industry">Industry Focus</a></li>
+      <li><a href="#portfolio">Portfolio</a></li><li><a href="#team">Team</a></li><li><a href="#communication">Communication</a></li><li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://wa.me/256794225505" class="whatsapp-nav"><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section id="home" style="background: linear-gradient(107deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55)), url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed; min-height: 90vh; display: flex; align-items: center;">
+  <div class="container" style="color: white; text-align: center;">
+    <div class="hero-logo" data-aos="fade-up"><img src="Script Stationary Logo.png" alt="Script Co Icon" style="height: 80px;"></div>
+    <h1 data-aos="fade-up" style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800;">SCRIPT CO</h1>
+    <p data-aos="fade-up" data-aos-delay="100" style="font-size: 1.3rem; margin: 20px 0; font-weight: 500;">Delivered by Service, Defined by Quality</p>
+    <p data-aos="fade-up" data-aos-delay="200" style="max-width: 700px; margin: 0 auto 32px; font-size: 1.1rem;">We deliver modern software solutions, professional websites, creative branding, and reliable system support across Uganda and East Africa.</p>
+    <div data-aos="fade-up" data-aos-delay="300" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <a href="#contact" class="btn-primary"><i class="fas fa-file-signature"></i> Request a Quote</a>
+      <a href="https://wa.me/256794225505" style="background: white; color:#2563eb; padding:12px 32px; border-radius: 50px; font-weight: 600; text-decoration:none; display: inline-flex; align-items: center; gap: 8px;"><i class="fab fa-whatsapp"></i> Talk to Us on WhatsApp</a>
+    </div>
+    <div class="stats-container" data-aos="fade-up" data-aos-delay="400">
+      <div class="stat-item"><div class="stat-number"><span class="counter" data-target="156">0</span>+</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-item"><div class="stat-number"><span class="counter" data-target="98">0</span>+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat-item"><div class="stat-number"><span class="counter" data-target="12">0</span></div><div class="stat-label">Expert Team</div></div>
+      <div class="stat-item"><div class="stat-number"><span class="counter" data-target="5">0</span>+</div><div class="stat-label">Years Excellence</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" style="padding: 100px 0;"><div class="container"><div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;"><div data-aos="fade-right"><h2 class="section-title" style="text-align: left;">About Script Co</h2><p style="margin-bottom: 20px;">Script Co is a premium digital transformation partner based in Uganda, serving East Africa. We blend design excellence with deep programming expertise to deliver robust, future-ready business solutions.</p><p style="margin-bottom: 20px;">Through our partnership with <strong>Egosms</strong> (Uganda, Kenya, Tanzania) and collaboration with <strong>Prime Pub</strong>, we empower schools, hospitals, retail enterprises, and hospitality leaders.</p><a href="#contact" class="btn-primary">Let's Collaborate</a></div><div data-aos="fade-left"><img src="company.jpg" style="border-radius: 36px; width:100%; box-shadow: 0 20px 35px rgba(0,0,0,0.1);" alt="Office"></div></div></div></section>
+
+<!-- Services -->
+<section id="services" style="background: #f8fafc; padding: 100px 0;"><div class="container"><h2 class="section-title" data-aos="fade-up">Our Core Services</h2><div class="card-grid"><div class="service-card" data-aos="zoom-in"><img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>🎨 Graphics Design</h3><p>Logo & brand identity, flyers, social media graphics.</p></div></div><div class="service-card" data-aos="zoom-in" data-aos-delay="100"><img src="https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>💻 Website Development</h3><p>Responsive websites, e-commerce, custom web apps.</p></div></div><div class="service-card" data-aos="zoom-in" data-aos-delay="200"><img src="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>⚙️ Programming Software</h3><p>Automation tools, enterprise software, databases.</p></div></div><div class="service-card" data-aos="zoom-in" data-aos-delay="300"><img src="https://images.pexels.com/photos/2882633/pexels-photo-2882633.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>🛡️ System Maintenance & Support</h3><p>24/7 support, updates, security, networking solutions.</p></div></div></div></div></section>
+
+<!-- Management Systems -->
+<section id="management" style="padding: 100px 0;"><div class="container"><h2 class="section-title" data-aos="fade-up">Management Systems</h2><div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;"><div data-aos="fade-right"><img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800" style="border-radius: 32px; width:100%;" alt="Management"></div><div data-aos="fade-left"><div style="display: flex; flex-direction: column; gap: 18px;"><div style="background: #eef2ff; padding: 20px; border-radius: 24px;"><strong>📦 Inventory Management</strong> – Real‑time tracking & analytics</div><div style="background: #eef2ff; padding: 20px; border-radius: 24px;"><strong>🏫 School Management</strong> – Fees, exams, portals</div><div style="background: #eef2ff; padding: 20px; border-radius: 24px;"><strong>🏥 Hospital (EMR)</strong> – Patient records, billing</div><div style="background: #eef2ff; padding: 20px; border-radius: 24px;"><strong>📊 ERP & CRM</strong> – Business automation</div><a href="#contact" class="btn-primary" style="text-align:center;">Request a Custom System</a></div></div></div></div></section>
+
+<!-- Gallery -->
+<section class="gallery-section" style="padding: 60px 0;"><div class="container"><h2 class="section-title">Smart / Digital Management Systems</h2><div class="gallery-grid"><div class="gallery-card"><img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">Real-time Business Analytics</div></div><div class="gallery-card"><img src="Attendance System.jpg" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">Student Management System</div></div><div class="gallery-card"><img src="https://images.pexels.com/photos/2102415/pexels-photo-2102415.jpeg?auto=compress&cs=tinysrgb&w=800" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">Electronic Medical Records (EMR)</div></div></div></div></section>
+
+<!-- Industry Focus -->
+<section id="industry" style="background: #f8fafc; padding: 100px 0;"><div class="container"><h2 class="section-title">Industry Focus</h2><div class="card-grid"><div class="industry-card"><img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>Corporate & Small Business</h3></div></div><div class="industry-card"><img src="st.rapheal.jpg" class="card-img"><div class="card-content"><h3>Educational Institutions</h3></div></div><div class="industry-card"><img src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>Healthcare</h3></div></div><div class="industry-card"><img src="https://images.pexels.com/photos/3943750/pexels-photo-3943750.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h3>Retail & E‑commerce</h3></div></div><div class="industry-card"><img src="PRIME BUCK.jpg" class="card-img"><div class="card-content"><h3>Hospitality (Prime Pub)</h3></div></div></div></div></section>
+
+<!-- Portfolio -->
+<section id="portfolio" style="padding: 80px 0;"><div class="container"><h2 class="section-title">Our Portfolio</h2><div class="filter-buttons" style="display:flex; justify-content:center; gap:16px; margin:35px 0; flex-wrap:wrap;"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="graphics">Graphics</button><button class="filter-btn" data-filter="websites">Websites</button><button class="filter-btn" data-filter="systems">Systems</button></div><div class="card-grid" id="portfolio-grid"><div class="portfolio-card portfolio-item graphics"><img src="SMS 1.jpg" class="card-img"><div class="card-content"><h4>Brand Identity Package</h4></div></div><div class="portfolio-card portfolio-item websites"><img src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h4>E‑commerce Platform</h4></div></div><div class="portfolio-card portfolio-item systems"><img src="https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h4>School Management System</h4></div></div><div class="portfolio-card portfolio-item graphics"><img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img"><div class="card-content"><h4>Social Media Campaign</h4></div></div></div></div></section>
+
+<!-- Founders Section -->
+<section id="team" style="background: #f8fafc; padding: 100px 0;"><div class="container"><h2 class="section-title">Meet Our Founders</h2><div class="card-grid">
+  <div class="team-card"><img src="CEO.png" class="card-img"><div class="card-content"><h3>Ssemakula Kenneth</h3><p>CEO & Lead Developer</p><div class="contact-links"><a href="https://wa.me/256794225505" class="whatsapp-btn-small" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp </a><a href="tel:+256794225505" class="call-btn-small"><i class="fas fa-phone-alt"></i> Call +256 794 225505</a></div></div></div>
+  <div class="team-card"><img src="SMS PIC3.png" class="card-img"><div class="card-content"><h3>Kayima Ibrahim</h3><p>Systems Architect & Support</p><div class="contact-links"><a href="https://wa.me/256700421946" class="whatsapp-btn-small" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="tel:+256700421946" class="call-btn-small"><i class="fas fa-phone-alt"></i> Call +256 700 421946</a></div></div></div>
+  <div class="team-card"><img src="Ivan.png" class="card-img"><div class="card-content"><h3>Shisa Ivan</h3><p>Creative Director & UI/UX</p><div class="contact-links"><a href="https://wa.me/256759373709" class="whatsapp-btn-small" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="tel:+256759373709" class="call-btn-small"><i class="fas fa-phone-alt"></i> Call +256 759 373709</a></div></div></div>
+</div></div></section>
+
+<!-- Communication Section -->
+<section id="communication" style="padding: 100px 0; background: #ffffff;">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">📞 Communication Team</h2>
+    <div class="card-grid">
+      <div class="communication-card" data-aos="zoom-in"><img src="Mercy.jpeg" class="card-img" alt="Mercy"><div class="card-content"><h3>Mercy</h3><p><strong>Communication Specialist</strong></p><div class="contact-links"><a href="https://wa.me/256746020000" class="whatsapp-btn-small" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="tel:+256746020000" class="call-btn-small"><i class="fas fa-phone-alt"></i> Call +256 746 020000</a></div></div></div>
+      <div class="communication-card" data-aos="zoom-in" data-aos-delay="100"><img src="Lux.jpeg" class="card-img" alt="Daphine"><div class="card-content"><h3>Daphine</h3><p><strong>Communication Specialist</strong></p><div class="contact-links"><a href="https://wa.me/256793954132" class="whatsapp-btn-small" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="tel:+256793954132" class="call-btn-small"><i class="fas fa-phone-alt"></i> Call +256 793 954132</a></div></div></div>
+      <div class="communication-card" data-aos="zoom-in" data-aos-delay="200"><img src="Joan.jpeg" class="card-img" alt="Joan"><div class="card-content"><h3>Joan</h3><p><strong>Communication Specialist</strong></p><div class="contact-links"><a href="https://wa.me/256771574899" class="whatsapp-btn-small" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="tel:+256771574899" class="call-btn-small"><i class="fas fa-phone-alt"></i> Call +256 771 574899</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" style="padding: 80px 0;"><div class="container"><h2 class="section-title">Client Reviews</h2><div class="swiper mySwiper"><div class="swiper-wrapper"><div class="swiper-slide"><div class="review-card"><img src="SMS PIC2.png" class="client-img"><div class="stars"><i class="fas fa-star" style="color:#fbbf24;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Script Co built a robust school management system with excellent support!"</p><h4>Kevin S.</h4></div></div><div class="swiper-slide"><div class="review-card"><img src="siting .png" class="client-img"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Their website development boosted our sales by 40%."</p><h4>John K.</h4></div></div><div class="swiper-slide"><div class="review-card"><img src="SMS PIC1.png" class="client-img"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Thanks to Script Co's inventory system, our operations are seamless."</p><h4>Patience M.</h4></div></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div></section>
+
+<!-- CTA Banner -->
+<section style="background: linear-gradient(115deg, #0f2b3d, #1b3a4b); padding: 70px 0; text-align: center;"><div class="container"><h2 style="font-size: 1.8rem; color:white;">Need a Website, Branding, or Management System?<br>Script Co is Ready.</h2><div class="cta-buttons" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;"><a href="tel:0794225505" class="btn-primary" style="background: white; color:#0f172a;">Call Now</a><a href="https://wa.me/256794225505" class="btn-primary" style="background:#25D366;">WhatsApp Now</a><a href="#contact" class="btn-outline">Request Quotation</a></div></div></section>
+
+<!-- Contact + Map -->
+<section id="contact" style="padding: 80px 0;"><div class="container"><div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;"><div><h3><i class="fas fa-map-pin"></i> Get in Touch</h3><p><i class="fas fa-map-marker-alt"></i> Kampala, Uganda</p><p><i class="fas fa-map-marker-alt"></i> Busunju - Mityana, Uganda</p><p><i class="fas fa-phone"></i> +256 794 225505/ +256 700 421946</p><p><i class="fab fa-whatsapp"></i> WhatsApp: 0794225505</p><p><i class="far fa-clock"></i> Mon-Fri: 8am - 6pm</p><img src="OFFICE.jpg" style="border-radius: 24px; margin-top: 20px; width:100%;"></div><div><h3>Send Message</h3><form class="contact-form" id="contactForm"><input type="text" placeholder="Full Name" required><input type="tel" placeholder="Phone"><input type="email" placeholder="Email" required><select><option>Graphics Design</option><option>Website Development</option><option>Management Systems</option><option>Programming Software</option><option>System Maintenance</option></select><textarea rows="4" placeholder="Project details..."></textarea><button type="submit" class="btn-primary">Send Inquiry <i class="fas fa-paper-plane"></i></button><p id="formStatus" style="margin-top: 10px;"></p></form></div></div></div><div class="container map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.655715165926!2d31.932012!3d0.457878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177d80a1c6c8f479%3A0xa0d5c9b1f3e2a879!2sBusunju!5e0!3m2!1sen!2sug!4v1710000000000!5m2!1sen!2sug" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></section>
+
+<footer><div class="container"><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 40px;"><div><h4>SCRIPT CO</h4><p>Delivered by Service, Defined by Quality</p><p>Partners: Egosms, Prime Pub</p></div><div><h4>Quick Links</h4><ul style="list-style: none;"><li>About</li><li>Services</li><li>Portfolio</li><li>Contact</li></ul></div><div><h4>Solutions</h4><p>Web & Software · Branding · ERP · Support</p></div></div><div style="text-align: center; margin-top: 40px; border-top: 1px solid #1e293b; padding-top: 24px;">© <span id="currentYear"></span> Script Co. All Rights Reserved. | Developed By Script Co</div></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+  document.getElementById('currentYear').innerText = new Date().getFullYear();
+  
+  const counters = document.querySelectorAll('.counter');
+  const startCounters = () => { counters.forEach(counter => { const updateCount = () => { const target = parseInt(counter.getAttribute('data-target')); const current = parseInt(counter.innerText); const increment = Math.ceil(target / 30); if (current < target) { counter.innerText = current + increment; setTimeout(updateCount, 30); } else { counter.innerText = target; } }; updateCount(); }); };
+  const statsContainer = document.querySelector('.stats-container');
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { startCounters(); observer.unobserve(entry.target); } }); }, { threshold: 0.3 });
+  if(statsContainer) observer.observe(statsContainer);
+  
+  new Swiper('.mySwiper', { loop: true, autoplay: { delay: 4500 }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, slidesPerView: 1, breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } });
+  document.getElementById('mobile-menu').onclick = () => document.getElementById('nav-links').classList.toggle('active');
+  document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const filter = btn.dataset.filter; document.querySelectorAll('.portfolio-item').forEach(item => { if(filter === 'all' || item.classList.contains(filter)) item.classList.remove('hidden-port'); else item.classList.add('hidden-port'); }); }); });
+  document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); document.getElementById('formStatus').innerHTML = '<span style="color: green;">✔ Message received! We’ll reply ASAP.</span>'; e.target.reset(); });
+  
+  // DEEPSEEK AI CHAT BOT
+  const DEEPSEEK_API_KEY = "sk-b3a9aba6dcc04fb6a20076aef442eb3d";
+  const chatContainer = document.getElementById('aiChatContainer');
+  const toggleBtn = document.getElementById('toggleChatBtn');
+  const messagesDiv = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendChatBtn');
+
+  let isMinimized = false;
+  toggleBtn.addEventListener('click', () => { isMinimized = !isMinimized; if(isMinimized) chatContainer.classList.add('minimized'); else chatContainer.classList.remove('minimized'); });
+  
+  function addMessage(text, isUser) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    msgDiv.innerText = text;
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+  
+  async function callDeepSeek(userMsg) {
+    addMessage(userMsg, true);
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot-message typing';
+    typingDiv.innerText = '✍️ Script AI is thinking...';
+    messagesDiv.appendChild(typingDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    try {
+      const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${DEEPSEEK_API_KEY}` },
+        body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: userMsg }], temperature: 0.7, max_tokens: 500 })
+      });
+      typingDiv.remove();
+      if (!response.ok) throw new Error(`API error ${response.status}`);
+      const data = await response.json();
+      const reply = data.choices?.[0]?.message?.content || "I'm here to assist with Script Co's IT solutions, networking, and software needs. Please rephrase!";
+      addMessage(reply, false);
+    } catch (err) {
+      typingDiv.remove();
+      addMessage("⚠️ Sorry, AI service is momentarily unavailable. Please contact us directly via WhatsApp or phone.", false);
+    }
+  }
+  
+  sendBtn.addEventListener('click', () => { const msg = chatInput.value.trim(); if(msg) { callDeepSeek(msg); chatInput.value = ''; } });
+  chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendBtn.click(); });
+</script>
+</body>
+</html>
